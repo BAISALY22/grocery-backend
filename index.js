@@ -15,13 +15,12 @@ import productRoutes from './routes/product.routes.js'
 import cartRoutes from './routes/cart.routes.js'
 import orderRoutes from './routes/order.routes.js'
 import addressRoutes from './routes/address.routes.js'
-import { connectCloudinary } from './config/cloudinary.js'
+
 
 const app = express()
 
-// DB + Cloudinary
+// DB 
 connectDB()
-connectCloudinary()
 
 // allowed origins
 const allowedOrigins = [
