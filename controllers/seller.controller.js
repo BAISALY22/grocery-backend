@@ -13,17 +13,13 @@ export const sellerLogin = async (req, res) => {
         expiresIn: "7d",
       });
 
-      res.cookie("sellerToken", token, {
-        // httpOnly: true,
-        // secure: process.env.NODE_ENV === "production",
-        // sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-        // maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        secure: false, // for localhost
-        sameSite: "lax", // ✅ important
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        path: "/",
-      });
+     res.cookie("sellerToken", token, {
+  httpOnly: true,
+  secure: true,        // ❗ MUST BE TRUE ON RENDER + VERCEL
+  sameSite: "none",    // ❗ REQUIRED FOR CROSS DOMAIN
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  path: "/",
+});
       res.status(200).json({
         message: "login successfull",
         success: true,
